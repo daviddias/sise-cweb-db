@@ -1,0 +1,50 @@
+{
+  "insurances": {
+    "base": {
+      "costPerYear": 10000,
+      "description": "Covers problems related with construction",
+      "discountPerYear": 1,
+      "maxDiscount": 10
+    },
+    "devices": {
+      "costPerYear": 1000,
+      "description": "Covers problems related with devices such as washing machine, fridge, etc, up to 5000 in repairs",
+      "discountPerYear": 0,
+      "maxDiscount": 0
+    },
+    "fire": {
+      "costPerYear": 800,
+      "description": "Covers fire hazard problems",
+      "discountPerYear": 2,
+      "maxDiscount": 20
+    },
+    "burglar": {
+      "costPerYear": 500,
+      "description": "Covers damages caused by stolen goods, up to 5000 per year",
+      "discountPerYear": 5,
+      "maxDiscount": 20
+    },
+    "naturalDisaster": {
+      "costPerYear": 500,
+      "description": "Covers damages caused by stolen goods, up to 5000 per year",
+      "discountPerYear": 5,
+      "maxDiscount": 20
+    }
+  },
+  "users": {
+    "123456789": {
+      "name": "Jacquelina Francisca",
+      "nif": "123456789",
+      "dateOfBirth": "Thu Apr 20 1956 10:51:53 GMT+0100 (WEST)",
+      "address": "Rua dos prazeres",
+      "quotes": []
+    },
+    "111222333": {
+      "name": "Roberto Desleal",
+      "nif": "111222333",
+      "dateOfBirth": "Mon Mar 10 1986 14:51:53 GMT+0100 (WEST)",
+      "address": "Av. Já Fostes",
+      "quotes": []
+    }
+  }
+}
