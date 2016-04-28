@@ -1,6 +1,6 @@
 {
   "name": "sise-db",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "CWEB Database",
   "main": "src/index.js",
   "scripts": {
@@ -20,7 +20,6 @@
   },
   "homepage": "https://github.com/diasdavid/sise-db#readme",
   "author": "David Dias <daviddias.p@gmail.com>",
-  "license": "MIT",
   "devDependencies": {
     "pre-commit": "^1.1.2",
     "standard": "^6.0.8",
