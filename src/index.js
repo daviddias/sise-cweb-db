@@ -26,20 +26,24 @@ function SISEDB () {
   self.getInsurance = function (type, callback) {
     if (callback) {
       process.nextTick(function () {
-        if (process.env.CRAZY_MONKEY) {
+        if (process.env.CRAZY_MONKEY === 'enabled') {
           return callback(new Error('db failed'))
         }
-        if (process.env.SLOW_MONKEY) {
+        if (process.env.SLOW_MONKEY === 'enabled') {
           return setTimeout(function () {
             callback(null, self.db.insurances[type])
-          }, 1500)
+          }, 10000)
         }
         callback(null, self.db.insurances[type])
       })
     } else {
-      if (process.env.SLOW_MONKEY) {
+      if (process.env.SLOW_MONKEY === 'enabled') {
         // TODO calc first 100 of fib and set it to a env
       }
+      if (process.env.CRAZY_MONKEY === 'enabled') {
+        throw new Error('db failed')
+      }
+
       return self.db.insurances[type]
     }
   }
@@ -57,14 +61,15 @@ function SISEDB () {
   self.getUser = function (nif, callback) {
     if (callback) {
       process.nextTick(function () {
-        if (process.env.SLOW_MONKEY) {
+        if (process.env.SLOW_MONKEY === 'enabled') {
           return setTimeout(function () {
             callback(null, self.db.users[nif])
-          }, 1500)
+          }, 10000)
         }
+        callback(null, self.db.users[nif])
       })
     } else {
-      if (process.env.SLOW_MONKEY) {
+      if (process.env.SLOW_MONKEY === 'enabled') {
         // TODO calc first 100 of fib and set it to a env
       }
       return self.db.users[nif]
@@ -74,6 +79,13 @@ function SISEDB () {
   self.putUser = function (user, callback) {
     if (callback) {
       process.nextTick(function () {
+        if (process.env.SLOW_MONKEY === 'enabled') {
+          return setTimeout(function () {
+            self.db.users[user.nif] = user
+            callback()
+          }, 10000)
+        }
+
         self.db.users[user.nif] = user
         callback()
       })
