@@ -52,7 +52,7 @@ var exported = db.export()
 
 ```JavaScript
 var insurances = db.getInsurances()
-// insurances is an array with the types of insurance available
+// insurances is an array of objects with the id of each insurance and its name
 ```
 
 #### getInsurance
@@ -63,6 +63,13 @@ var insurance = db.getInsurance(<type>)
 ```
 
 `type` must be a string
+
+#### getInsurances
+
+```JavaScript
+var properties = db.getProperties()
+// insurances is an array containing the type of properties
+```
 
 #### getUsers
 
@@ -108,18 +115,28 @@ db.getInsurance(<type>, function (err, insurance) {
 
 `type` must be a string
 
+#### getProperties
+
+```JavaScript
+db.getProperties(function (err, properties) {
+ // `properties` is an array containing the types of property available
+})
+```
+
 #### getUsers
 
 ```JavaScript
-var users = cb.getUsers()
-// users is an array with all the NIF numbers of users that requested for Insurance quotes
+db.getUsers(function (err, users) {
+  // users is an array with all the NIF numbers of users that requested for Insurance quotes
+})
 ```
 
 #### getUser
 
 ```JavaScript
-var user = db.getUser(<nif>)
-// The user object, with all its information and the quotes it requested
+db.getUser(<nif>, function (err, user) {
+  // The user object, with all its information and the quotes it requested
+})
 ```
 
 `nif` must be a string
@@ -127,7 +144,7 @@ var user = db.getUser(<nif>)
 #### putUser
 
 ```JavaScript
-db.putUser(<user>)
+db.putUser(<user>, function (err) {})
 ```
 
 `user` is a user object. If a user information already existed, it replaces it

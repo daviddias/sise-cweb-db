@@ -1,49 +1,48 @@
 {
+  "properties": [
+    "Apartment T0",
+    "Apartment T1",
+    "Apartment T2",
+    "Apartment T3",
+    "Apartment T4",
+    "Apartment T5",
+    "Apartment T6",
+    "Castle",
+    "Cozy bridge"
+  ],
   "insurances": {
-    "base": {
-      "costPerYear": 10000,
-      "description": "Covers problems related with construction",
-      "discountPerYear": 1,
-      "maxDiscount": 10
+    "aaaa": {
+      "name": "Base",
+      "description": "Covers problems related with construction"
     },
-    "devices": {
-      "costPerYear": 1000,
-      "description": "Covers problems related with devices such as washing machine, fridge, etc, up to 5000 in repairs",
-      "discountPerYear": 0,
-      "maxDiscount": 0
+    "aaab": {
+      "name": "Electronic Devices",
+      "description": "Covers problems related with devices such as washing machine, fridge, etc, up to 5000 in repairs"
     },
-    "fire": {
-      "costPerYear": 800,
-      "description": "Covers fire hazard problems",
-      "discountPerYear": 2,
-      "maxDiscount": 20
+    "aaac": {
+      "name": "Fire Hazards",
+      "description": "Covers fire hazard problems"
     },
-    "burglar": {
-      "costPerYear": 500,
-      "description": "Covers damages caused by stolen goods, up to 5000 per year",
-      "discountPerYear": 5,
-      "maxDiscount": 20
+    "aaad": {
+      "name": "Theft",
+      "description": "Covers damages caused by stolen goods"
     },
-    "naturalDisaster": {
-      "costPerYear": 500,
-      "description": "Covers damages caused by stolen goods, up to 5000 per year",
-      "discountPerYear": 5,
-      "maxDiscount": 20
+    "aaae": {
+      "name": "Natural Disasters",
+      "description": "Covers damages caused by Natural Disasters. Winter is coming"
     }
   },
   "users": {
     "123456789": {
       "name": "Jacquelina Francisca",
+      "email": "banana@paradise.com",
       "nif": "123456789",
-      "dateOfBirth": "Thu Apr 20 1956 10:51:53 GMT+0100 (WEST)",
-      "address": "Rua dos prazeres",
       "quotes": []
     },
     "111222333": {
       "name": "Roberto Desleal",
+      "email": "arroz.com.salsichas@enlatados.com",
       "nif": "111222333",
-      "dateOfBirth": "Mon Mar 10 1986 14:51:53 GMT+0100 (WEST)",
-      "address": "Av. Já Fostes",
       "quotes": []
     }
   }

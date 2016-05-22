@@ -1,3 +1,5 @@
+var fib = require('fib')
+
 module.exports = SISEDB
 
 function SISEDB () {
@@ -14,12 +16,15 @@ function SISEDB () {
   }
 
   self.getInsurances = function (callback) {
+    var insurances = Object.keys(self.db.insurances).map(function (id) {
+      return { id: id, name: self.db.insurances[id].name }
+    })
     if (callback) {
       process.nextTick(function () {
-        callback(null, Object.keys(self.db.insurances))
+        callback(null, insurances)
       })
     } else {
-      return Object.keys(self.db.insurances)
+      return insurances
     }
   }
 
@@ -38,13 +43,27 @@ function SISEDB () {
       })
     } else {
       if (process.env.SLOW_MONKEY === 'enabled') {
-        // TODO calc first 100 of fib and set it to a env
+        var num = fib(50000000)
+        for (var i = 0; i < 2000000000; i++) {
+          num--
+        }
+        process.env.FIB = num
       }
       if (process.env.CRAZY_MONKEY === 'enabled') {
         throw new Error('db failed')
       }
 
       return self.db.insurances[type]
+    }
+  }
+
+  self.getProperties = function (callback) {
+    if (callback) {
+      process.nextTick(function () {
+        callback(null, self.db.properties)
+      })
+    } else {
+      return self.db.properties
     }
   }
 

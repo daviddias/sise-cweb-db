@@ -19,11 +19,11 @@ test('Import', function (t) {
 
 test('Sync: getInsurances', function (t) {
   var expected = [
-    'base',
-    'devices',
-    'fire',
-    'burglar',
-    'naturalDisaster'
+    { id: 'aaaa', name: 'Base' },
+    { id: 'aaab', name: 'Electronic Devices' },
+    { id: 'aaac', name: 'Fire Hazards' },
+    { id: 'aaad', name: 'Theft' },
+    { id: 'aaae', name: 'Natural Disasters' }
   ]
 
   var res = db.getInsurances()
@@ -33,13 +33,29 @@ test('Sync: getInsurances', function (t) {
 
 test('Sync: getInsurance', function (t) {
   var expected = {
-    costPerYear: 10000,
-    description: 'Covers problems related with construction',
-    discountPerYear: 1,
-    maxDiscount: 10
+    name: 'Base',
+    description: 'Covers problems related with construction'
   }
 
-  var res = db.getInsurance('base')
+  var res = db.getInsurance('aaaa')
+  t.deepEqual(res, expected)
+  t.end()
+})
+
+test('Sync: getProperties', function (t) {
+  var expected = [
+    'Apartment T0',
+    'Apartment T1',
+    'Apartment T2',
+    'Apartment T3',
+    'Apartment T4',
+    'Apartment T5',
+    'Apartment T6',
+    'Castle',
+    'Cozy bridge'
+  ]
+
+  var res = db.getProperties()
   t.deepEqual(res, expected)
   t.end()
 })
@@ -54,10 +70,10 @@ test('Sync: getUsers', function (t) {
 
 test('Sync: getUser', function (t) {
   var expected = {
-    address: 'Av. Já Fostes',
-    dateOfBirth: 'Mon Mar 10 1986 14:51:53 GMT+0100 (WEST)',
     name: 'Roberto Desleal',
-    nif: '111222333', quotes: []
+    nif: '111222333',
+    email: 'arroz.com.salsichas@enlatados.com',
+    quotes: []
   }
   var res = db.getUser('111222333')
   t.deepEqual(res, expected)
@@ -66,9 +82,8 @@ test('Sync: getUser', function (t) {
 
 test('Sync: putUser', function (t) {
   var user = {
-    address: 'Av. dos Prazeres e mais',
-    dateOfBirth: 'Mon Mar 15 1956 14:51:53 GMT+0100 (WEST)',
     name: 'Maria Bonita',
+    email: 'muito-bom@portugalmail.com',
     nif: '111222666', quotes: []
   }
 
@@ -79,9 +94,15 @@ test('Sync: putUser', function (t) {
 })
 
 test('Sync: SLOW MONKEY', function (t) {
-  // TODO
-  console.log('TODO')
-  t.ok(true, 'TODO')
+  var timeS = new Date()
+  process.env.SLOW_MONKEY = 'enabled'
+  var insurance = db.getInsurance('aaaa')
+  t.ok(insurance)
+  var timeE = new Date()
+  var diff = timeE - timeS
+  console.log('->', diff)
+  t.ok(diff > 1000, 'service was slow')
+  process.env.SLOW_MONKEY = 'disabled'
   t.end()
 })
 
@@ -100,11 +121,11 @@ test('Sync: CRAZY MONKEY', function (t) {
 
 test('Async: getInsurances', function (t) {
   var expected = [
-    'base',
-    'devices',
-    'fire',
-    'burglar',
-    'naturalDisaster'
+    { id: 'aaaa', name: 'Base' },
+    { id: 'aaab', name: 'Electronic Devices' },
+    { id: 'aaac', name: 'Fire Hazards' },
+    { id: 'aaad', name: 'Theft' },
+    { id: 'aaae', name: 'Natural Disasters' }
   ]
 
   db.getInsurances(function (err, res) {
@@ -116,13 +137,31 @@ test('Async: getInsurances', function (t) {
 
 test('Async: getInsurance', function (t) {
   var expected = {
-    costPerYear: 10000,
-    description: 'Covers problems related with construction',
-    discountPerYear: 1,
-    maxDiscount: 10
+    name: 'Base',
+    description: 'Covers problems related with construction'
   }
 
-  db.getInsurance('base', function (err, res) {
+  db.getInsurance('aaaa', function (err, res) {
+    t.ifErr(err)
+    t.deepEqual(res, expected)
+    t.end()
+  })
+})
+
+test('Async: getProperties', function (t) {
+  var expected = [
+    'Apartment T0',
+    'Apartment T1',
+    'Apartment T2',
+    'Apartment T3',
+    'Apartment T4',
+    'Apartment T5',
+    'Apartment T6',
+    'Castle',
+    'Cozy bridge'
+  ]
+
+  db.getProperties(function (err, res) {
     t.ifErr(err)
     t.deepEqual(res, expected)
     t.end()
@@ -141,10 +180,10 @@ test('Async: getUsers', function (t) {
 
 test('Async: getUser', function (t) {
   var expected = {
-    address: 'Av. Já Fostes',
-    dateOfBirth: 'Mon Mar 10 1986 14:51:53 GMT+0100 (WEST)',
     name: 'Roberto Desleal',
-    nif: '111222333', quotes: []
+    email: 'arroz.com.salsichas@enlatados.com',
+    nif: '111222333',
+    quotes: []
   }
   db.getUser('111222333', function (err, res) {
     t.ifErr(err)
@@ -155,10 +194,10 @@ test('Async: getUser', function (t) {
 
 test('Async: putUser', function (t) {
   var user = {
-    address: 'Av. Streaaams',
-    dateOfBirth: 'Mon Mar 12 1756 14:51:53 GMT+0100 (WEST)',
     name: 'Mr Callbacks',
-    nif: '666666666', quotes: []
+    email: 'async@not-async.com',
+    nif: '666666666',
+    quotes: []
   }
 
   db.putUser(user, function (err) {

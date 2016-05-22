@@ -24,5 +24,8 @@
     "pre-commit": "^1.1.2",
     "standard": "^6.0.8",
     "tape": "^4.5.1"
+  },
+  "dependencies": {
+    "fib": "0.0.1"
   }
 }
