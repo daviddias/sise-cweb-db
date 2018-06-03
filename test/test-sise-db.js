@@ -28,12 +28,10 @@ test('Sync: getInsurances', function (t) {
 })
 
 test('Sync: getInsurance', function (t) {
-  var expected = {
-    name: 'Base',
-    description: 'Covers problems related with construction'
-  }
+  var key = '6b3a331b7ebd1842a6bbd56755ebbfc6'
+  var expected = testData.insurances[key]
 
-  var res = db.getInsurance('aaaa')
+  var res = db.getInsurance(key)
   t.deepEqual(res, expected)
   t.end()
 })
@@ -74,7 +72,7 @@ test('Sync: putUser', function (t) {
 test('Sync: SLOW MONKEY', function (t) {
   var timeS = new Date()
   process.env.SLOW_MONKEY = 'enabled'
-  var insurance = db.getInsurance('aaaa')
+  var insurance = db.getInsurance('6b3a331b7ebd1842a6bbd56755ebbfc6')
   t.ok(insurance)
   var timeE = new Date()
   var diff = timeE - timeS
@@ -87,7 +85,7 @@ test('Sync: CRAZY MONKEY', function (t) {
   process.env.CRAZY_MONKEY = 'enabled'
 
   try {
-    db.getInsurance('base')
+    db.getInsurance('6b3a331b7ebd1842a6bbd56755ebbfc6')
     t.fail()
   } catch (err) {
     t.ok(Boolean(err), 'db failed as expected')
@@ -109,12 +107,11 @@ test('Async: getInsurances', function (t) {
 })
 
 test('Async: getInsurance', function (t) {
-  var expected = {
-    name: 'Base',
-    description: 'Covers problems related with construction'
-  }
+  var key = '6b3a331b7ebd1842a6bbd56755ebbfc6'
+  var expected = testData.insurances[key]
 
-  db.getInsurance('aaaa', function (err, res) {
+
+  db.getInsurance(key, function (err, res) {
     t.ifErr(err)
     t.deepEqual(res, expected)
     t.end()
