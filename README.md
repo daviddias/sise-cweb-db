@@ -1,5 +1,5 @@
-SISE-DB
-=======
+SISE-CWEB-DB
+============
 
 [![](https://img.shields.io/badge/INESC-GSD-brightgreen.svg?style=flat-square)](http://www.gsd.inesc-id.pt/)
 [![](https://img.shields.io/badge/TÉCNICO-LISBOA-blue.svg?style=flat-square)](http://tecnico.ulisboa.pt/)
@@ -64,13 +64,6 @@ var insurance = db.getInsurance(<type>)
 
 `type` must be a string
 
-#### getInsurances
-
-```JavaScript
-var properties = db.getProperties()
-// insurances is an array containing the type of properties
-```
-
 #### getUsers
 
 ```JavaScript
@@ -114,14 +107,6 @@ db.getInsurance(<type>, function (err, insurance) {
 ```
 
 `type` must be a string
-
-#### getProperties
-
-```JavaScript
-db.getProperties(function (err, properties) {
- // `properties` is an array containing the types of property available
-})
-```
 
 #### getUsers
 
