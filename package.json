@@ -1,5 +1,5 @@
 {
-  "name": "sise-db",
+  "name": "sise-cweb-db",
   "version": "0.1.1",
   "description": "CWEB Database",
   "main": "src/index.js",
@@ -12,17 +12,17 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/diasdavid/sise-db.git"
+    "url": "git+ssh://git@github.com/diasdavid/sise-cweb-db.git"
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/diasdavid/sise-db/issues"
+    "url": "https://github.com/diasdavid/sise-cweb-db/issues"
   },
-  "homepage": "https://github.com/diasdavid/sise-db#readme",
-  "author": "David Dias <daviddias.p@gmail.com>",
+  "homepage": "https://github.com/diasdavid/sise-cweb-db#readme",
+  "author": "David Dias <mail@daviddias.me>",
   "devDependencies": {
     "pre-commit": "^1.1.2",
-    "sise-cweb-data": "0.0.4",
+    "sise-cweb-data": "~0.1.0",
     "standard": "^6.0.8",
     "tape": "^4.5.1"
   },
