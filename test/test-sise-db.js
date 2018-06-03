@@ -18,13 +18,9 @@ test('Import', function (t) {
 })
 
 test('Sync: getInsurances', function (t) {
-  var expected = [
-    { id: 'aaaa', name: 'Base' },
-    { id: 'aaab', name: 'Electronic Devices' },
-    { id: 'aaac', name: 'Fire Hazards' },
-    { id: 'aaad', name: 'Theft' },
-    { id: 'aaae', name: 'Natural Disasters' }
-  ]
+  var expected = Object.keys(testData.insurances).map((key) => {
+    return { id: key, name: testData.insurances[key].name }
+  })
 
   var res = db.getInsurances()
   t.deepEqual(res, expected)
@@ -42,26 +38,8 @@ test('Sync: getInsurance', function (t) {
   t.end()
 })
 
-test('Sync: getProperties', function (t) {
-  var expected = [
-    'Apartment T0',
-    'Apartment T1',
-    'Apartment T2',
-    'Apartment T3',
-    'Apartment T4',
-    'Apartment T5',
-    'Apartment T6',
-    'Castle',
-    'Cozy bridge'
-  ]
-
-  var res = db.getProperties()
-  t.deepEqual(res, expected)
-  t.end()
-})
-
 test('Sync: getUsers', function (t) {
-  var expected = [ '111222333', '123456789' ]
+  var expected = Object.keys(testData.users)
 
   var res = db.getUsers()
   t.deepEqual(res, expected)
@@ -119,13 +97,9 @@ test('Sync: CRAZY MONKEY', function (t) {
 })
 
 test('Async: getInsurances', function (t) {
-  var expected = [
-    { id: 'aaaa', name: 'Base' },
-    { id: 'aaab', name: 'Electronic Devices' },
-    { id: 'aaac', name: 'Fire Hazards' },
-    { id: 'aaad', name: 'Theft' },
-    { id: 'aaae', name: 'Natural Disasters' }
-  ]
+  var expected = Object.keys(testData.insurances).map((key) => {
+    return { id: key, name: testData.insurances[key].name }
+  })
 
   db.getInsurances(function (err, res) {
     t.ifErr(err)
@@ -147,32 +121,13 @@ test('Async: getInsurance', function (t) {
   })
 })
 
-test('Async: getProperties', function (t) {
-  var expected = [
-    'Apartment T0',
-    'Apartment T1',
-    'Apartment T2',
-    'Apartment T3',
-    'Apartment T4',
-    'Apartment T5',
-    'Apartment T6',
-    'Castle',
-    'Cozy bridge'
-  ]
-
-  db.getProperties(function (err, res) {
-    t.ifErr(err)
-    t.deepEqual(res, expected)
-    t.end()
-  })
-})
-
 test('Async: getUsers', function (t) {
-  var expected = [ '111222333', '111222666', '123456789' ]
+  var expected = Object.keys(testData.users)
+  expected.push('111222666')
 
   db.getUsers(function (err, res) {
     t.ifErr(err)
-    t.deepEqual(res, expected)
+    t.deepEqual(res.sort(), expected.sort())
     t.end()
   })
 })

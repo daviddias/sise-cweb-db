@@ -8,11 +8,11 @@ function SISEDB () {
   self.db = {}
 
   self.import = function (db) {
-    self.db = db
+    self.db = JSON.parse(JSON.stringify(db))
   }
 
   self.export = function () {
-    return self.db
+    return JSON.parse(JSON.stringify(self.db))
   }
 
   self.getInsurances = function (callback) {
@@ -54,16 +54,6 @@ function SISEDB () {
       }
 
       return self.db.insurances[type]
-    }
-  }
-
-  self.getProperties = function (callback) {
-    if (callback) {
-      process.nextTick(function () {
-        callback(null, self.db.properties)
-      })
-    } else {
-      return self.db.properties
     }
   }
 
