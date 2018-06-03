@@ -22,6 +22,7 @@
   "author": "David Dias <daviddias.p@gmail.com>",
   "devDependencies": {
     "pre-commit": "^1.1.2",
+    "sise-cweb-data": "0.0.4",
     "standard": "^6.0.8",
     "tape": "^4.5.1"
   },

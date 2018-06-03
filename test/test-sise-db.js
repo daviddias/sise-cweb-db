@@ -1,7 +1,7 @@
 var test = require('tape')
 var SISEDB = require('../src')
 
-var testData = require('./migrations')
+var testData = require('sise-cweb-data')
 var db
 
 test('Create', function (t) {
@@ -100,7 +100,6 @@ test('Sync: SLOW MONKEY', function (t) {
   t.ok(insurance)
   var timeE = new Date()
   var diff = timeE - timeS
-  console.log('->', diff)
   t.ok(diff > 1000, 'service was slow')
   process.env.SLOW_MONKEY = 'disabled'
   t.end()
